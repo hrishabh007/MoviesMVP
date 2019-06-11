@@ -12,8 +12,8 @@ import dagger.Provides;
 @Module
 public class MainActivityContextModule {
 
-    public MainActivity mainActivity;
-    public Context context;
+    private MainActivity mainActivity;
+    private Context context;
 
     public MainActivityContextModule(MainActivity mainActivity) {
         this.mainActivity = mainActivity;

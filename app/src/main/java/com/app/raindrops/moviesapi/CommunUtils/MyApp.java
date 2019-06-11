@@ -11,7 +11,7 @@ import com.app.raindrops.moviesapi.Di.Module.ContextModule;
 
 
 public class MyApp extends Application {
-    public ApplicationComponent applicationComponent;
+    private ApplicationComponent applicationComponent;
     @Override
     public void onCreate() {
         super.onCreate();

@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Clic
 
     @Override
     public void showComplete() {
-
+        Toast.makeText(mContext, "Movie List", Toast.LENGTH_SHORT).show();
     }
 
     @Override

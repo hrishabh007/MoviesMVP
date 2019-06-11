@@ -15,8 +15,8 @@ import io.reactivex.schedulers.Schedulers;
 public class PresenterImpl implements MainActivtyContract.presenter {
 
 
-    APIInterface apiInterface;
-    MainActivtyContract.view view;
+    private APIInterface apiInterface;
+    private MainActivtyContract.view view;
 
     @Inject
     public PresenterImpl(APIInterface apiInterface, MainActivtyContract.view view) {

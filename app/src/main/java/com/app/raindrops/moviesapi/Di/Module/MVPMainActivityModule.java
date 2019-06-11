@@ -9,7 +9,7 @@ import dagger.Provides;
 
 @Module
 public class MVPMainActivityModule {
-    MainActivtyContract.view view;
+    private MainActivtyContract.view view;
 
     public MVPMainActivityModule(MainActivtyContract.view view) {
         this.view = view;

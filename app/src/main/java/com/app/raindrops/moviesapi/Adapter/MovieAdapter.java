@@ -21,7 +21,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder> {
-    List<Movie> movies;
+    private List<Movie> movies;
     private MovieAdapter.ClickListener clickListener;
     private Context context;
 
