@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Clic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recyclerView);
 
         ApplicationComponent applicationComponent = MyApp.get(this).getApplicationComponent();
 
@@ -63,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Clic
                 .applicationComponent(applicationComponent)
                 .build();
         mainActivityComponent.injectMainActivity(this);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(activityContext));
         recyclerView.setAdapter(recyclerViewAdapter);
         progressBar = findViewById(R.id.progressBar);
@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Clic
 
     @Override
     public void launchIntent(Movie name) {
+        //Launch intend with movie details or show toast on item click
+        Toast.makeText(mContext, "" + name.getTitle(), Toast.LENGTH_SHORT).show();
 
     }
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -55,6 +56,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         stringBuilder.setLength(stringBuilder.length() - 1);
         holder.genre.setText(stringBuilder.toString());
         holder.releaseYear.setText(String.valueOf(movies.get(position).getReleaseYear()));
+
+
+        holder.movierow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickListener.launchIntent(movies.get(position));
+            }
+        });
         //holder.genre.setText(movies.get(position).getGenre());
     }
 
@@ -75,6 +84,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView thumbnail;
         TextView title, rating, genre, releaseYear;
+        RelativeLayout movierow;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +93,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             rating = (TextView) itemView.findViewById(R.id.rating);
             genre = (TextView) itemView.findViewById(R.id.genre);
             releaseYear = (TextView) itemView.findViewById(R.id.releaseYear);
+            movierow = (RelativeLayout) itemView.findViewById(R.id.movierow);
         }
     }
 }
