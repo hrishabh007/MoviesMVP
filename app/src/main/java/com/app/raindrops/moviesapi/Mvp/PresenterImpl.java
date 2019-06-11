@@ -63,6 +63,7 @@ public class PresenterImpl implements MainActivtyContract.presenter {
         });
     }
     private void callapiwithdissposable(){
+        //time can be changed by period value
         disposable = Observable.interval(1000, 5000, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.raindrops.moviesapi.Model.Movie;
 import com.app.raindrops.moviesapi.R;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideExtension;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,7 +46,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        //Picasso gets context automatically
         Picasso.get().load(movies.get(position).getImage()).into(holder.thumbnail);
+        //Context is needed for Glide
+       // Glide.with(context).load(movies.get(position).getImage()).into(holder.thumbnail);
         holder.title.setText(movies.get(position).getTitle());
         holder.rating.setText(String.valueOf(movies.get(position).getRating()));
 
