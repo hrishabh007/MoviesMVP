@@ -28,9 +28,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements MovieAdapter.ClickListener, MainActivtyContract.view {
-    private RecyclerView recyclerView;
-    private ProgressBar progressBar;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
     MainActivityComponent mainActivityComponent;
 
     @Inject
@@ -52,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Clic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
 
         ApplicationComponent applicationComponent = MyApp.get(this).getApplicationComponent();
@@ -62,10 +69,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Clic
                 .applicationComponent(applicationComponent)
                 .build();
         mainActivityComponent.injectMainActivity(this);
-        recyclerView = findViewById(R.id.recyclerView);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(activityContext));
         recyclerView.setAdapter(recyclerViewAdapter);
-        progressBar = findViewById(R.id.progressBar);
+
 
         presenter.loadData();
     }

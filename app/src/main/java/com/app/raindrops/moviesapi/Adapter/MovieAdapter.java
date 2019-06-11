@@ -20,9 +20,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder> {
+
     private List<Movie> movies;
-    private MovieAdapter.ClickListener clickListener;
+    private ClickListener clickListener;
     private Context context;
 
     @Inject
@@ -43,10 +47,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         Picasso.get().load(movies.get(position).getImage()).into(holder.thumbnail);
         holder.title.setText(movies.get(position).getTitle());
         holder.rating.setText(String.valueOf(movies.get(position).getRating()));
-        // String boko= String.valueOf(movies.get(position).getReleaseYear());
 
-        ArrayList<String> list = new ArrayList<>();
-        list.addAll(movies.get(position).getGenre());
+        //Arraylist addAll()' call can be replaced with parametrized constructor
+
+        ArrayList<String> list = new ArrayList<>(movies.get(position).getGenre());
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
             stringBuilder.append(list.get(i));
@@ -57,14 +61,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         holder.genre.setText(stringBuilder.toString());
         holder.releaseYear.setText(String.valueOf(movies.get(position).getReleaseYear()));
 
-
-        holder.movierow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickListener.launchIntent(movies.get(position));
-            }
+        //Java 8 lambda
+        holder.movierow.setOnClickListener((View v) -> {
+            // do something here
+            clickListener.launchIntent(movies.get(position));
         });
-        //holder.genre.setText(movies.get(position).getGenre());
+
     }
 
     @Override
@@ -82,18 +84,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.thumbnail)
         ImageView thumbnail;
-        TextView title, rating, genre, releaseYear;
+        @BindView(R.id.title)
+        TextView title;
+        @BindView(R.id.rating)
+        TextView rating;
+        @BindView(R.id.genre)
+        TextView genre;
+        @BindView(R.id.releaseYear)
+        TextView releaseYear;
+        @BindView(R.id.movierow)
         RelativeLayout movierow;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            thumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
-            title = (TextView) itemView.findViewById(R.id.title);
-            rating = (TextView) itemView.findViewById(R.id.rating);
-            genre = (TextView) itemView.findViewById(R.id.genre);
-            releaseYear = (TextView) itemView.findViewById(R.id.releaseYear);
-            movierow = (RelativeLayout) itemView.findViewById(R.id.movierow);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
